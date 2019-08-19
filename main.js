@@ -56,7 +56,7 @@ function guessNumber(numb) {
 
   console.log(rand);
 
-  if (rand === numb) {
+  if (rand <= 10 && rand > 0 && rand === numb) {
     console.log("Вы выиграли");
   } else {
     console.log(`Вы не угадали ваше число ${numb} а выпало число ${rand}`);
@@ -120,18 +120,14 @@ console.log(changeCollection3([1, 2, 3], [10, 15, 20]));
 // funcGetUsers(users, “gender”, “male”); // [ {name: “Denis”, age: “29”, gender: “male”} , {name: “Ivan”, age: “20”, gender: “male”} ]
 
 function funcGetUsers(users, field, value) {
-  if (Array.isArray(users)) {
-    if (field != undefined) {
-      if (value != undefined) {
-        let result = [];
-        for (let i = 0; i < users.length; i++) {
-          if (users[i][field] == value) {
-            result.push(users[i]);
-          }
-        }
-        return result;
+  if (Array.isArray(users) && field != undefined && value != undefined) {
+    let result = [];
+    for (let i = 0; i < users.length; i++) {
+      if (users[i][field] == value) {
+        result.push(users[i]);
       }
     }
+    return result;
   }
 }
 
@@ -194,17 +190,15 @@ console.log(startFunction(["abc", "123"], fourthFunction));
 // 2. Написать аналог метода every. Создайте функцию every, она должна принимать первым аргументом массив чисел (обязательно проверьте что передан массив) вторым аргументом callback (обязательно проверьте что передана функция) функция должна возвращать true или false в зависимости от результата вызова callback (проверить число больше 5). Callback должен принимать один элемент массива, его индекс в массиве и весь массив.
 
 function myEvery(inputArray, callback) {
-  if (Array.isArray(inputArray)) {
-    if (typeof callback === "function") {
-      let result = true;
-      for (let i = 0; i < inputArray.length; i++) {
-        result = result && callback(inputArray[i], i, inputArray);
-        if (!result) {
-          return result;
-        }
+  if (Array.isArray(inputArray) && typeof callback === "function") {
+    let result = true;
+    for (let i = 0; i < inputArray.length; i++) {
+      result = result && callback(inputArray[i], i, inputArray);
+      if (!result) {
+        return result;
       }
-      return result;
     }
+    return result;
   }
 }
 
